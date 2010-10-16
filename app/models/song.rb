@@ -1,5 +1,5 @@
 class Song
-  include MongoMapper::Document
+  include Mongoid::Document
 
   key :lyrics
   key :url
