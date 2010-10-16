@@ -1,11 +1,11 @@
 class CallsController < ApplicationController
 
   def create
-    render :dial
+    render :dial, :layout => false
   end
 
   def index
-    render :text => "hi"
+    render :text => "hi", :layout => false
   end
 
 end
