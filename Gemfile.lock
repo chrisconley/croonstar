@@ -30,8 +30,8 @@ GEM
     activesupport (3.0.1)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    bson (1.1.1)
-    bson_ext (1.1.1)
+    bson (1.0.4)
+    bson_ext (1.0.4)
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -52,24 +52,22 @@ GEM
     hashie (0.4.0)
     highline (1.6.1)
     i18n (0.4.1)
-    jnunemaker-validatable (1.8.4)
-      activesupport (>= 2.3.4)
     json_pure (1.4.6)
     mail (2.2.7)
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
-    mongo (1.1.1)
-      bson (>= 1.1.1)
-    mongo_mapper (0.8.6)
-      activesupport (>= 2.3.4)
-      jnunemaker-validatable (~> 1.8.4)
-      plucky (~> 0.3.6)
+    mongo (1.0.7)
+      bson (>= 1.0.4)
+    mongoid (2.0.0.beta.17)
+      activemodel (~> 3.0.0)
+      bson (= 1.0.4)
+      mongo (= 1.0.7)
+      tzinfo (~> 0.3.22)
+      will_paginate (~> 3.0.pre)
     net-ssh (2.0.23)
     nokogiri (1.4.3.1)
-    plucky (0.3.6)
-      mongo (~> 1.1)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -117,16 +115,17 @@ GEM
       hashie (>= 0.2.0)
       json_pure (>= 1.2.0)
     tzinfo (0.3.23)
+    will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext (= 1.1.1)
+  bson_ext (= 1.0.4)
   capybara
   factory_girl
   highline
-  mongo_mapper (= 0.8.6)
+  mongoid (= 2.0.0.beta.17)
   net-ssh
   rails (= 3.0.1)
   rspec-rails

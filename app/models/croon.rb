@@ -1,6 +1,6 @@
 class Croon
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :phone_number
-  key :song_url
+  field :phone_number
+  field :song_url
 end
