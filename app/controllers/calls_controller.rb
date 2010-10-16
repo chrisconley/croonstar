@@ -4,4 +4,8 @@ class CallsController < ApplicationController
     render :dial
   end
 
+  def index
+    render :text => "hi"
+  end
+
 end
