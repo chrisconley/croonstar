@@ -1,6 +1,6 @@
 CroonStar::Application.routes.draw do
-  get "croons/index"
-
+  get "croons" => 'croons#index'
+  get "croons/listen/:id" => 'croons#listen'
   get "croons/create"
 
   get "croons/crooning"

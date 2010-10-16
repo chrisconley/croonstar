@@ -1,5 +1,6 @@
 class CroonsController < ApplicationController
   def index
+#    @croons = Croon.all
   end
 
   def create
@@ -9,6 +10,10 @@ class CroonsController < ApplicationController
   end
 
   def show
+  end
+
+  def listen
+    
   end
 
 end
