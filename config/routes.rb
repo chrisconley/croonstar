@@ -1,4 +1,12 @@
 CroonStar::Application.routes.draw do
+  get "croons/index"
+
+  get "croons/create"
+
+  get "croons/crooning"
+
+  get "croons/show"
+
   post "tropo_sessions/create"
 
   resources :calls
