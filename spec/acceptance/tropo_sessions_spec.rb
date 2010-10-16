@@ -7,16 +7,26 @@ feature "Tropo Sessions", %q{
 } do
 
   scenario "TropoSessions#create.json" do
-    number_to_dial = '12345'
-    Tropo::Generator.stub!(:parse).and_return({:session=>{:parameters=>{:number_to_dial=>number_to_dial}}})
+    recording_id = '12345'
+    Tropo::Generator.stub!(:parse).and_return({:session=>{:parameters=>{:recording_id=>recording_id}}})
     page.driver.post '/tropo_sessions/create.json'
 
-    page.should have_content(number_to_dial)
+    page.should have_content(recording_id)
     page.should have_content('Hello! Press 1 when your are ready to start crooning.')
     page.should have_content('ready')
-    page.should have_content('/tropo_sessions/start_recording.json')
-    page.should have_content('/tropo_sessions/hangup.json')
+    page.should have_content("/tropo_sessions/start_recording.json/?recording_id=#{recording_id}")
+    page.should have_content("/tropo_sessions/hangup.json?recording_id=#{recording_id}")
+  end
+  
+  scenario "TropoSessions#start_recording.json" do
+    recording_id = '12345'
+    recording = Recording.create(:id => recording_id, :song_url => "/test.mp3")
+    Tropo::Generator.stub!(:parse).and_return({:session=>{:parameters=>{:recording_id=>recording_id}}})
+    page.driver.post '/tropo_sessions/start_recording.json'
 
+    page.should have_content(recording.song_url)
+    page.should have_content("/tropo_mp3s/#{recording.id}")
+    page.should have_content("/tropo_sessions/processing?#{recording.id}")
   end
 end
 

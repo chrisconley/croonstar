@@ -1,12 +1,11 @@
 class TropoSessionsController < ApplicationController
   def create
     sessions_object = Tropo::Generator.parse request.env['rack.input'].read
-    number_to_dial = sessions_object[:session][:parameters][:number_to_dial]
-    require 'pp'
-    pp sessions_object.inspect
+    recording_id = sessions_object[:session][:parameters][:recording_id]
+    p sessions_object
 
     tropo = Tropo::Generator.new do
-              call :to => 'tel:+1' + number_to_dial
+              call :to => 'tel:+1' + Recording.find(recording_id).phone_number
               on :event => 'hangup', :next => '/tropo_sessions/hangup.json'
               on :event => 'continue', :next => '/tropo_sessions/start_recording.json'
               ask({ :name    => 'ready',
