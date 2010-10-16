@@ -1,4 +1,6 @@
 CroonStar::Application.routes.draw do
+  post "tropo_sessions/create"
+
   resources :calls
 
   # The priority is based upon order of creation:

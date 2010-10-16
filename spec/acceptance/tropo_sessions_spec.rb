@@ -7,10 +7,11 @@ feature "Tropo Sessions", %q{
 } do
 
   scenario "TropoSessions#create.json" do
-    post tropo_sessions_path
+    page.driver.post '/tropo_sessions/create.json'
 
-    page.has_content?('Hello! Press 1 when your are ready to start crooning.')
-    page.has_content?('ready_to_start')
-    page.has_content?('/tropo/sessions/start_recording.json')
+    page.should have_content('Hello! Press 1 when your are ready to start crooning.')
+    page.should have_content('ready')
+    page.should have_content('/tropo_sessions/start_recording.json')
+    page.should have_content('/tropo_sessions/hangup.json')
   end
 end
