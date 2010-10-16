@@ -1,4 +1,6 @@
 CroonStar::Application.routes.draw do
+  resources :tropo_recordings, :only => [:create]
+
   post "tropo_sessions/create"
   post "tropo_sessions/start_recording"
 
