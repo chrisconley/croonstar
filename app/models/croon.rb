@@ -1,11 +1,10 @@
-require 'carrierwave/orm/mongo_mapper'
+require 'carrierwave/orm/mongoid'
 
 class Croon
-  include MongoMapper::Document
-  extend CarrierWave::MongoMapper
+  include Mongoid::Document
 
   mount_uploader :recording, RecordingUploader
 
-  key :phone_number
-  key :song_url
+  field :phone_number
+  field :song_url
 end

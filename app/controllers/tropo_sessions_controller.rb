@@ -40,6 +40,6 @@ class TropoSessionsController < ApplicationController
       params[:croon_id]
     end
     puts croon_id.inspect
-    @croon = Croon.where(:id => croon_id).first
+    @croon = Croon.criteria.id(croon_id).first
   end
 end
