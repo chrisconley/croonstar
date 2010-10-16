@@ -18,6 +18,7 @@ gem 'net-ssh', :require => 'net/ssh'
 gem 'rspec-rails'
 gem 'steak', '>= 1.0.0.rc.1'
 gem 'capybara'
+gem 'factory_girl'
 
 # Use unicorn as the web server
 # gem 'unicorn'

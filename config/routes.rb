@@ -8,6 +8,7 @@ CroonStar::Application.routes.draw do
   get "croons/show"
 
   post "tropo_sessions/create"
+  post "tropo_sessions/start_recording"
 
   resources :calls
 
