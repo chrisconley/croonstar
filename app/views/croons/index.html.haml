@@ -1,4 +1,10 @@
 %div#page
+    = form_for @croon do |c|
+        %p
+            = c.label :phone_number
+            = c.phone_field :phone_number
+        %p= select("croon", "song_url", @songs_for_select)
+        = c.submit 'Croon!'
     %table#croons
         %thead
             %th Play

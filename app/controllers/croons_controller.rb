@@ -1,9 +1,14 @@
 class CroonsController < ApplicationController
   def index
-#    @croons = Croon.all
+    @songs_for_select = Song.all.collect {|s| [ s.title, s.url ] }
+    @croons = Croon.all
+    @croon = Croon.new
   end
 
   def create
+    p params[:croon]
+    c = Croon.create(params[:croon])
+    puts c
   end
 
   def crooning
