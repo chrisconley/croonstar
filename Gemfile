@@ -10,10 +10,13 @@ gem 'rails', '3.0.1'
 gem 'mongo_mapper', "0.8.6"
 gem 'bson_ext', "1.1.1"
 gem 'tropo-webapi-ruby'
-gem 'rspec'
 
 gem 'highline'
 gem 'net-ssh', :require => 'net/ssh'
+
+gem 'rspec-rails'
+gem 'steak', '>= 1.0.0.rc.1'
+gem 'capybara'
 
 # Use unicorn as the web server
 # gem 'unicorn'
