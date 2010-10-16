@@ -6,7 +6,11 @@ feature "Tropo Sessions", %q{
   I want to ...
 } do
 
-  scenario "Scenario name" do
-    true.should == true
+  scenario "TropoSessions#create.json" do
+    post tropo_sessions_path
+
+    page.has_content?('Hello! Press 1 when your are ready to start crooning.')
+    page.has_content?('ready_to_start')
+    page.has_content?('/tropo/sessions/start_recording.json')
   end
 end
