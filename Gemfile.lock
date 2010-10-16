@@ -37,6 +37,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     hashie (0.4.0)
+    highline (1.6.1)
     i18n (0.4.1)
     jnunemaker-validatable (1.8.4)
       activesupport (>= 2.3.4)
@@ -52,6 +53,7 @@ GEM
       activesupport (>= 2.3.4)
       jnunemaker-validatable (~> 1.8.4)
       plucky (~> 0.3.6)
+    net-ssh (2.0.23)
     plucky (0.3.6)
       mongo (~> 1.1)
     polyglot (0.3.1)
@@ -97,7 +99,9 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (= 1.1.1)
+  highline
   mongo_mapper (= 0.8.6)
+  net-ssh
   rails (= 3.0.1)
   rspec
   tropo-webapi-ruby

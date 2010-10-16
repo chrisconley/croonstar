@@ -12,6 +12,9 @@ gem 'bson_ext', "1.1.1"
 gem 'tropo-webapi-ruby'
 gem 'rspec'
 
+gem 'highline'
+gem 'net-ssh', :require => 'net/ssh'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
