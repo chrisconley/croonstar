@@ -17,15 +17,7 @@ class CroonsController < ApplicationController
     end
   end
 
-  def crooning
-  end
-
   def show
     @croon = Croon.criteria.id(params[:id]).first
   end
-
-  def listen
-
-  end
-
 end
