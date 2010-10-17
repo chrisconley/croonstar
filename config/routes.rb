@@ -3,6 +3,8 @@ CroonStar::Application.routes.draw do
 
   post "tropo_sessions/create"
   post "tropo_sessions/start_recording"
+  post "tropo_sessions/processing"
+  post "tropo_sessions/hangup"
 
   resources :calls
 
