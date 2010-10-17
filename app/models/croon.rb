@@ -10,6 +10,7 @@ class Croon
   field :vote_count, :type => Integer, :default => 0
   field :crooner
   field :status
+  field :hangup, :type => Boolean
   referenced_in :song
 
   def song_attributes=(song_attributes)

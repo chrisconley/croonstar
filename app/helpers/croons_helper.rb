@@ -7,4 +7,13 @@ module CroonsHelper
     end
     options
   end
+
+  def display_status(status)
+    case status
+      when "calling" then
+      when "hangup" then
+      when "processing" then
+        
+    end
+  end
 end
