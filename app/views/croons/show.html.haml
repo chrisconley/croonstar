@@ -1,4 +1,9 @@
 %div
     = display_status(@croon)
+    - if @croon.recording_filename
+        .prepend-6.span-12.append-6
+            %table#croons
+                %tbody
+                    = render :partial => "player", :locals => {:croon => @croon}
     = button_to "Try Again", croons_url, :method => :get
     %pre= @croon.song.lyrics
