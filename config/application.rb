@@ -11,6 +11,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 require 'open-uri'
 require 'uri'
+ENV['MONGO_URL'] = "mongodb://localhost:27017/croon_star_production"
 if ENV['MONGO_URL']
   mongo_uri = URI.parse(ENV['MONGO_URL'])
   ENV['MONGOID_HOST'] = mongo_uri.host
