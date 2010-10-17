@@ -15,7 +15,7 @@ class Croon
   referenced_in :song
 
   def truncate_crooner()
-    self.crooner = self.crooner.first(25)
+    self.crooner = self.crooner.try(:first, 25)
   end
 
   def song_attributes=(song_attributes)

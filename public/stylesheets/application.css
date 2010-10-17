@@ -46,3 +46,11 @@ tbody td.small {
     font-size:0.7em;
     text-align:right;
 }
+
+pre.lyrics {
+    text-align:left;
+}
+
+h2.lyrics {
+    text-align:left;
+}

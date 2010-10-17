@@ -1,5 +1,5 @@
 %div
-    = display_status(@croon)
+    #status= display_status(@croon)
     - if @croon.recording_filename
         .prepend-6.span-12.append-6
             %table#croons
@@ -7,9 +7,11 @@
                     = render :partial => "player", :locals => {:croon => @croon}
     - else
         - form_for @croon do |f|
-            = f.label :crooner, "Show off your inner star and enter your name or alias: "
+            = f.label :crooner, "Enter your name or alias: "
             = f.text_field :crooner
+            %br
             = f.label "Click here when you are finished singing: "
             = f.submit "Finish!"
     = button_to "Try Again", croons_url, :method => :get
-    %pre= @croon.song.lyrics
+    %h2.lyrics= "Lyrics to #{@croon.song.title}"
+    %pre.lyrics= @croon.song.lyrics
