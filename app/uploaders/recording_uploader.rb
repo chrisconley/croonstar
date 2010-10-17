@@ -28,14 +28,14 @@ class RecordingUploader < CarrierWave::Uploader::Base
      #split into a file for each channel files
      tmp_path = current_path.gsub(/\/[^\/]+$/, '')
 
-    `sox #{file.file} #{tmp_path}/left.wav pan -1`
-    `sox #{file.file} #{tmp_path}/right.wav pan 1`
-
-    # trim one of them
-    `sox #{tmp_path}/left.wav #{tmp_path}/left-trimmed.wav trim 0:00.6`
-
-    # merge the two channels
-    `sox -m #{tmp_path}/right.wav #{tmp_path}/left-trimmed.wav #{file.file}`
+    # `sox #{file.file} #{tmp_path}/left.wav pan -1`
+    # `sox #{file.file} #{tmp_path}/right.wav pan 1`
+    #
+    # # trim one of them
+    # `sox #{tmp_path}/left.wav #{tmp_path}/left-trimmed.wav trim 0:00.6`
+    #
+    # # merge the two channels
+    # `sox -m #{tmp_path}/right.wav #{tmp_path}/left-trimmed.wav #{file.file}`
   end
 
   # Create different versions of your uploaded files:
