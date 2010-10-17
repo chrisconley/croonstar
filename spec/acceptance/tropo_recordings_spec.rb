@@ -11,8 +11,8 @@ feature "Tropo Recordings", %q{
     file = Rack::Test::UploadedFile.new(File.dirname(__FILE__) + '/support/foreword.mp3')
     page.driver.post "/tropo_recordings.json?croon_id=#{@croon.id}", :filename => file
 
-    puts @croon.recording.inspect
-    puts @croon.recording_filename.inspect
-    @croon.recording.url.should == "hello"
+    @croon.reload
+
+    @croon.recording.url.should =~ /foreword.mp3/
   end
 end

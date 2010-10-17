@@ -22,10 +22,8 @@ class TropoSessionsController < ApplicationController
     tropo = Tropo::Generator.new
     tropo.on :event => "hangup", :next => "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
     tropo.on :event => "continue", :next => "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
-    tropo.say @croon.song_url
     tropo.start_recording :url => "http://web1.tunnlr.com:9901/tropo_recordings/create.json?croon_id=#{@croon.id}", :format => "mp3"
-
-    puts tropo.response
+    tropo.say @croon.song_url
 
     render :json => tropo.response
   end
@@ -39,7 +37,6 @@ class TropoSessionsController < ApplicationController
     rescue
       params[:croon_id]
     end
-    puts croon_id.inspect
     @croon = Croon.criteria.id(croon_id).first
   end
 end

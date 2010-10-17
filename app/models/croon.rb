@@ -1,5 +1,3 @@
-require 'carrierwave/orm/mongoid'
-
 class Croon
   include Mongoid::Document
 
