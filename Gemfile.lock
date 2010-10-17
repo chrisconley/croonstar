@@ -139,3 +139,4 @@ DEPENDENCIES
   rspec-rails
   steak (>= 1.0.0.rc.1)
   tropo-webapi-ruby
+  will_paginate (~> 3.0.pre2)
