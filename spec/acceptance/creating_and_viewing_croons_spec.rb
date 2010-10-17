@@ -30,6 +30,7 @@ feature "Creating And Viewing Croons", %q{
     AwesomeHTTP.stub!(:get)
     visit "/croons/#{croon.id}"
 
+    page.should have_button("Try Again")
     page.should have_content("should receive a phone call")
     page.should have_content("Follow the prompt")
     page.should have_content("haven't received a call within a minute")
