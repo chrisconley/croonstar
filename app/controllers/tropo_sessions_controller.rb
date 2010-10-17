@@ -1,6 +1,7 @@
 class TropoSessionsController < ApplicationController
   before_filter :find_croon
   def create
+    @croon.update_attributes(:status => "calling")
     tropo = Tropo::Generator.new
     tropo.call :to => 'tel:+1' + @croon.phone_number
     tropo.on :event => "hangup", :next => "/tropo_sessions/hangup.json?croon_id=#{@croon.id}"
@@ -19,15 +20,24 @@ class TropoSessionsController < ApplicationController
   end
 
   def start_recording
+    @croon.update_attributes(:status => "recording")
     tropo = Tropo::Generator.new
-    tropo.on :event => "hangup", :next => "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
+    tropo.on :event => "hangup", :next => "/tropo_sessions/hangup.json?croon_id=#{@croon.id}" # processing.json if tropo fixes bug
     tropo.on :event => "continue", :next => "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
+    tropo.start_recording :url => "http://web1.tunnlr.com:9901/tropo_recordings.json?croon_id=#{@croon.id}", :format => "mp3"
     tropo.say @croon.song_url
-    tropo.start_recording :url => "http://web1.tunnlr.com:9901/tropo_mp3s/#{@croon.id}", :format => "mp3"
-
-    puts tropo.response
 
     render :json => tropo.response
+  end
+
+  def processing
+    @croon.update_attributes(:status => "processing")
+    render :json => {}.to_json
+  end
+
+  def hangup
+    @croon.update_attributes(:hangup => true)
+    render :json => {}.to_json
   end
 
   private
@@ -39,7 +49,6 @@ class TropoSessionsController < ApplicationController
     rescue
       params[:croon_id]
     end
-    puts croon_id.inspect
     @croon = Croon.criteria.id(croon_id).first
   end
 end

@@ -9,6 +9,18 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+require 'open-uri'
+require 'uri'
+ENV['MONGO_URL'] = "mongodb://localhost:27017/croon_star_production"
+if ENV['MONGO_URL']
+  mongo_uri = URI.parse(ENV['MONGO_URL'])
+  ENV['MONGOID_HOST'] = mongo_uri.host
+  ENV['MONGOID_PORT'] = mongo_uri.port.to_s
+  # ENV['MONGOID_USERNAME'] = mongo_uri.user
+  # ENV['MONGOID_PASSWORD'] = mongo_uri.password
+  ENV['MONGOID_DATABASE'] = mongo_uri.path.gsub('/', '')
+end
+
 module CroonStar
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

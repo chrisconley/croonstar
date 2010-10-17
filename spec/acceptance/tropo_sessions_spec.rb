@@ -16,6 +16,8 @@ feature "Tropo Sessions", %q{
 
     page.driver.post '/tropo_sessions/create.json'
 
+    @croon.reload
+    @croon[:status].should == 'calling'
     page.should have_content(@croon.id.to_s)
     page.should have_content('Hello! Press 1 when your are ready to start crooning.')
     page.should have_content('ready')
@@ -26,9 +28,23 @@ feature "Tropo Sessions", %q{
   scenario "TropoSessions#start_recording.json" do
     page.driver.post "/tropo_sessions/start_recording.json?croon_id=#{@croon.id}"
 
+    @croon.reload
+    @croon[:status].should == 'recording'
     page.should have_content(@croon.song_url)
-    page.should have_content("/tropo_mp3s/#{@croon.id}")
+    page.should have_content("/tropo_recordings.json?croon_id=#{@croon.id}")
     page.should have_content("/tropo_sessions/processing.json?croon_id=#{@croon.id}")
+  end
+
+  scenario "TropoSessions#processing.json" do
+    page.driver.post "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
+    @croon.reload
+    @croon[:status].should == 'processing'
+  end
+
+  scenario "TropoSessions#hangup.json" do
+    page.driver.post "/tropo_sessions/hangup.json?croon_id=#{@croon.id}"
+    @croon.reload
+    @croon[:hangup].should == true
   end
 end
 

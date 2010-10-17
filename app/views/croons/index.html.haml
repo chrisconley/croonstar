@@ -5,8 +5,8 @@
             = c.phone_field :phone_number
             = error_messages(c.object.errors[:phone_number])
         %p
-            = label_tag "Pick a Song!"
-            = select("croon", "song_url", song_select_options(@songs))
+            = c.label :song_url, "Pick a Song!"
+            = c.select :song_url, song_select_options(@songs)
         = c.submit 'Croon!'
     %table#croons
         %thead

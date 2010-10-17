@@ -6,3 +6,5 @@ tmp/**/*
 .idea/**/*
 .idea/*
 spec/.DS_Store
+public/uploads/**/*
+capybara*

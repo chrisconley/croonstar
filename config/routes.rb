@@ -5,12 +5,18 @@ CroonStar::Application.routes.draw do
 
   get "croons/crooning"
 
-  get "croons/show"
+  get "croons/show", :as => "croon"
+
+  resources :tropo_recordings, :only => [:create]
 
   post "tropo_sessions/create"
   post "tropo_sessions/start_recording"
+  post "tropo_sessions/processing"
+  post "tropo_sessions/hangup"
 
   resources :calls
+
+  root :to => "croons#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
