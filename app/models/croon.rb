@@ -5,7 +5,7 @@ class Croon
 
   validates_presence_of :phone_number
   validates_length_of :phone_number, :is => 10, :message => "must contain 10 digits"
-  before_save :truncate_crooner
+  before_save :truncate_and_immute_crooner
 
   field :phone_number
   field :vote_count, :type => Integer, :default => 0
@@ -14,8 +14,14 @@ class Croon
   field :hangup, :type => Boolean
   referenced_in :song
 
-  def truncate_crooner()
-    self.crooner = self.crooner.try(:first, 25)
+  def truncate_and_immute_crooner()
+    puts "was " + self.crooner_was
+    puts "new " + self.crooner
+    if self.crooner_was.present?
+      self.crooner = self.crooner_was
+    else
+      self.crooner = self.crooner.try(:first, 25)
+    end
   end
 
   def song_attributes=(song_attributes)
