@@ -5,6 +5,7 @@ class Croon
 
   validates_presence_of :phone_number
   validates_length_of :phone_number, :is => 10, :message => "must contain 10 digits"
+  before_save :truncate_crooner
 
   field :phone_number
   field :vote_count, :type => Integer, :default => 0
@@ -13,11 +14,13 @@ class Croon
   field :hangup, :type => Boolean
   referenced_in :song
 
+  def truncate_crooner()
+    self.crooner = self.crooner.first(25)
+  end
+
   def song_attributes=(song_attributes)
     self.song = Song.criteria.id(song_attributes[:id]).first
   end
-
-
 
   def before_validation_on_create
     self.phone_number = phone_number.gsub(/[^0-9]/, "")

@@ -41,3 +41,8 @@ tbody tr td {
 }
 
 tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
+
+tbody td.small {
+    font-size:0.7em;
+    text-align:right;
+}

@@ -8,7 +8,7 @@ CroonStar::Application.routes.draw do
   post "tropo_sessions/processing"
   post "tropo_sessions/hangup"
 
-  resources :croons, :only => [:index, :create, :show]
+  resources :croons, :only => [:index, :create, :show, :update]
 
   root :to => "croons#index"
 

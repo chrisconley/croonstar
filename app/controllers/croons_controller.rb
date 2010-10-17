@@ -21,4 +21,11 @@ class CroonsController < ApplicationController
   def show
     @croon = Croon.criteria.id(params[:id]).first
   end
+
+  def update
+    @croon = Croon.criteria.id(params[:id]).first
+    puts params
+    @croon.update_attributes(params[:croon])
+    render :show
+  end
 end

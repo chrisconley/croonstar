@@ -6,8 +6,10 @@
                 %tbody
                     = render :partial => "player", :locals => {:croon => @croon}
     - else
-        = form_tag  croon_url(@croon), :method => :get do
-            = label_tag "Click here when you are finished singing: "
-            = button_to "Finish!"
+        - form_for @croon do |f|
+            = f.label :crooner, "Show off your inner star and enter your name or alias: "
+            = f.text_field :crooner
+            = f.label "Click here when you are finished singing: "
+            = f.submit "Finish!"
     = button_to "Try Again", croons_url, :method => :get
     %pre= @croon.song.lyrics
