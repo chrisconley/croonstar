@@ -9,7 +9,7 @@ class Croon
   field :phone_number
   field :vote_count, :type => Integer, :default => 0
   field :crooner
-  field :status
+  field :status, :default => "initialized"
   field :hangup, :type => Boolean
   referenced_in :song
 

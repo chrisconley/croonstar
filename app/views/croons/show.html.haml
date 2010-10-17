@@ -1,2 +1,3 @@
-%div= display_status(@croon.status)
+%div
+    = display_status(@croon.hangup, @croon.status)
     %pre= @croon.song.lyrics
