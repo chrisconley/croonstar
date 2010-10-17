@@ -31,9 +31,8 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("should receive a phone call")
-    page.should have_content("Follow the prompt")
-    page.should have_content("haven't received a call within a minute")
   end
 
   scenario "Viewing a croon with calling status" do
@@ -42,9 +41,8 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("should receive a phone call")
-    page.should have_content("Follow the prompt")
-    page.should have_content("haven't received a call within a minute")
   end
 
   scenario "Viewing a croon with recording status" do
@@ -53,7 +51,8 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_content("Don't hang up")
+    page.should have_button("Finish")
+    page.should have_content("still recording")
   end
 
   scenario "Viewing a croon with processing status" do
@@ -62,7 +61,8 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_content("Congratulations!")
+    page.should have_button("Finish")
+    page.should have_content("processing")
   end
 
   scenario "Viewing a croon with complete status" do
@@ -71,6 +71,7 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("play")
   end
 
@@ -80,6 +81,7 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("Oh No!")
     page.should have_content("unexpected")
   end
@@ -90,6 +92,7 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("Oh No!")
     page.should have_content("disconnected before")
   end
@@ -100,10 +103,10 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("Oh No!")
     page.should have_content("disconnected before")
-    page.should have_content("entire song")
-    page.should have_content("good connection")
+    page.should have_content("wait")
   end
 
   scenario "Viewing a croon with processing status that has been hungup" do
@@ -112,6 +115,7 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("Congratulations")
   end
 
@@ -121,6 +125,7 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("play your song")
   end
 
@@ -130,6 +135,7 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
+    page.should have_button("Finish")
     page.should have_content("unable to process")
   end
 end

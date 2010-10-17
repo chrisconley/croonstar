@@ -13,13 +13,13 @@ module CroonsHelper
       exclamation = "Oh No!  "
       case croon.status
         when "initialized" then
-          exclamation + "Something unexpected happened!  Try again."
+          exclamation + "Something unexpected happened!"
         when "calling" then
-          exclamation + "The call was disconnected before the song started!  If you want to try again, click the 'try again' button."
+          exclamation + "The call was disconnected before the song started!"
         when "recording" then
-          exclamation + "The call was disconnected before the song finished!  You have to sing the entire song.  Be sure you have a good connection and wait for us to disconnect before you hangup."
+          exclamation + "The call was disconnected before the song finished!  Be sure to either press '9' or wait for the song to end before hanging up."
         when "processing" then
-          "Congratulations!  You have submitted a song.  The song should be available shortly"
+          "Congratulations!  You have submitted a song, but we haven't finished processing it.  Press 'Finish' again in a few seconds."
         when "complete" then
           if croon.recording_filename
             "Click below to play your song!"
@@ -30,13 +30,13 @@ module CroonsHelper
     else
       case croon.status
         when "initialized" then
-          "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing.  If you haven't received a call within a minute, please try again."
+          "You should receive a phone call shortly if you haven't already!"
         when "calling" then
-          "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing.  If you haven't received a call within a minute, please try again."
+          "You should receive a phone call shortly if you haven't already!"
         when "recording" then
-          "You have great pipes!  Don't hang up until until we do!"
+          "We're still recording.  You have great pipes!"
         when "processing" then
-          "Congratulations!  You have submitted a song.  The song should be available shortly"
+          "Congratulations!  You have submitted a song, but we haven't finished processing it.  Press 'Finish' again in a few seconds."
         when "complete" then
           "Click below to play your song!"
       end
