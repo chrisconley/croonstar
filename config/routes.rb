@@ -1,11 +1,5 @@
 CroonStar::Application.routes.draw do
-  get "croons" => 'croons#index'
   get "croons/listen/:id" => 'croons#listen'
-  post "croons" => 'croons#create'
-
-  get "croons/crooning"
-
-  get "croons/show", :as => "croon"
 
   resources :tropo_recordings, :only => [:create]
 
@@ -14,7 +8,7 @@ CroonStar::Application.routes.draw do
   post "tropo_sessions/processing"
   post "tropo_sessions/hangup"
 
-  resources :calls
+  resources :croons, :only => [:index, :create, :show]
 
   root :to => "croons#index"
 

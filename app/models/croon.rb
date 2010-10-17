@@ -1,5 +1,6 @@
 class Croon
   include Mongoid::Document
+  include Mongoid::Timestamps
   mount_uploader :recording, RecordingUploader
 
   validates_presence_of :phone_number
