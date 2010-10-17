@@ -5,8 +5,9 @@
             %table#croons
                 %tbody
                     = render :partial => "player", :locals => {:croon => @croon}
-    = form_tag  croon_url(@croon), :method => :get do
-        = label_tag "Click here when you are finished singing: "
-        = button_to "Finish!"
+    - else
+        = form_tag  croon_url(@croon), :method => :get do
+            = label_tag "Click here when you are finished singing: "
+            = button_to "Finish!"
     = button_to "Try Again", croons_url, :method => :get
     %pre= @croon.song.lyrics
