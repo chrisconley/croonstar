@@ -6,12 +6,13 @@
             %table#croons
                 %tbody
                     = render :partial => "player", :locals => {:croon => @croon}
-    - elsif @croon.crooner.blank? && !@croon.hangup
+    - elsif !@croon.crooner && !@croon.hangup
         - form_for @croon do |f|
             = f.label :crooner, "When you are finished singing, enter your name or alias:"
             %br
             = f.text_field :crooner
             = f.submit "Finish!"
+        OR
     -elsif !@croon.hangup
         = form_tag({:action => :show, :id => @croon.id}, {:method => :get}) do
             = label_tag :crooner, "Click here when you are finished singing: "
