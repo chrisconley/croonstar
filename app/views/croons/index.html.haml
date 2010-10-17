@@ -19,6 +19,6 @@
             - @croons.each do |croon|
                 %tr
                     %td= link_to :listen, :action => :listen, :id => 1
-                    %td= croon.song.title
+                    %td= croon.song.try(:title)
                     %td= croon.crooner
                     %td= croon.vote_count
