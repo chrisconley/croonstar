@@ -54,3 +54,8 @@ pre.lyrics {
 h2.lyrics {
     text-align:left;
 }
+
+#status {
+    font-size:1.5em;
+    /*margin-botton:5em;*/
+}
