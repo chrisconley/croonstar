@@ -9,11 +9,11 @@ module CroonsHelper
   end
 
   def display_status(croon)
+    exclamation = "Oh No!  "
     if croon.recording_filename
       "Click below to play your song!"
     else
       if croon.hangup
-        exclamation = "Oh No!  "
         case croon.status
           when "initialized" then
             exclamation + "Something unexpected happened!"
@@ -22,7 +22,7 @@ module CroonsHelper
           when "recording" then
             exclamation + "The call was disconnected before the song finished!  Be sure to either press '9' or wait for the song to end before hanging up."
           when "processing" then
-            "Congratulations!  You have submitted a song, but we haven't finished processing it.  Press 'Finish' again in a few seconds."
+            exclamation + "The call was disconnected before the song finished!  Be sure to either press '9' or wait for the song to end before hanging up."
           when "complete" then
             exclamation + "We were unable to process your file!  Please try again."
         end
