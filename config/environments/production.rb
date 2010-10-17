@@ -2,13 +2,13 @@ TROPO_APP_TOKEN = "4f7f4523d2c3c947addfa470e238efbac6a60a3e6ceaccbc68f1380cd075b
 DOMAIN = "http://croonstar.r10.railsrumble.com"
 CroonStar::Application.configure do
 
-  CarrierWave.configure do |config|
-    config.storage              = 's3'
-
-    config.s3_access_key_id     = "AKIAJJB2WGYSKAOLCXOQ"
-    config.s3_secret_access_key = "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"
-    config.s3_bucket            = 'croon-star'
-  end
+  # CarrierWave.configure do |config|
+  #   config.storage              = 's3'
+  #
+  #   config.s3_access_key_id     = "AKIAJJB2WGYSKAOLCXOQ"
+  #   config.s3_secret_access_key = "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"
+  #   config.s3_bucket            = 'croon-star'
+  # end
 
 
   # Settings specified here will take precedence over those in config/environment.rb
