@@ -6,7 +6,6 @@ class Croon
   validates_length_of :phone_number, :is => 10, :message => "must contain 10 digits"
 
   field :phone_number
-  field :song_url
   field :vote_count, :type => Integer, :default => 0
   field :crooner
   referenced_in :song
