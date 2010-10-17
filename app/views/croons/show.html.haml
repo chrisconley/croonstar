@@ -1,12 +1,23 @@
 %div
-    = display_status(@croon)
+    #status= display_status(@croon)
+    %br
     - if @croon.recording_filename
         .prepend-6.span-12.append-6
             %table#croons
                 %tbody
                     = render :partial => "player", :locals => {:croon => @croon}
-    = form_tag  croon_url(@croon), :method => :get do
-        = label_tag "Click here when you are finished singing: "
-        = button_to "Finish!"
+    - elsif @croon.crooner.blank? && !@croon.hangup
+        - form_for @croon do |f|
+            = f.label :crooner, "When you are finished singing, enter your name or alias:"
+            %br
+            = f.text_field :crooner
+            = f.submit "Finish!"
+    -elsif !@croon.hangup
+        = form_tag({:action => :show, :id => @croon.id}, {:method => :get}) do
+            = label_tag :crooner, "Click here when you are finished singing: "
+            = submit_tag "Finish!"
+        OR
     = button_to "Try Again", croons_url, :method => :get
-    %pre= @croon.song.lyrics
+    %br
+    %h2.lyrics= "Lyrics to #{@croon.song.title}"
+    %pre.lyrics= @croon.song.lyrics

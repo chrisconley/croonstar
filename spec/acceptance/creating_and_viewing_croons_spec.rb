@@ -65,23 +65,12 @@ feature "Creating And Viewing Croons", %q{
     page.should have_content("processing")
   end
 
-  scenario "Viewing a croon with complete status" do
-    croon = Factory.create(:croon, :status => "complete")
-    AwesomeHTTP.stub!(:get)
-    visit "/croons/#{croon.id}"
-
-    page.should have_button("Try Again")
-    page.should have_button("Finish")
-    page.should have_content("play")
-  end
-
   scenario "Viewing a croon with initialized status that has been hungup" do
     croon = Factory.create(:croon, :status => "initialized", :hangup => true)
     AwesomeHTTP.stub!(:get)
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_button("Finish")
     page.should have_content("Oh No!")
     page.should have_content("unexpected")
   end
@@ -92,7 +81,6 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_button("Finish")
     page.should have_content("Oh No!")
     page.should have_content("disconnected before")
   end
@@ -103,7 +91,6 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_button("Finish")
     page.should have_content("Oh No!")
     page.should have_content("disconnected before")
     page.should have_content("wait")
@@ -115,8 +102,16 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_button("Finish")
-    page.should have_content("Congratulations")
+    page.should have_content("disconnected")
+  end
+
+  scenario "Viewing a croon with a recording" do
+    croon = Factory.create(:croon, :status => "complete", :recording_filename => "not_nil")
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("play your song")
   end
 
   scenario "Viewing a croon with complete status that has been hungup and has a recording" do
@@ -125,7 +120,6 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_button("Finish")
     page.should have_content("play your song")
   end
 
@@ -135,7 +129,6 @@ feature "Creating And Viewing Croons", %q{
     visit "/croons/#{croon.id}"
 
     page.should have_button("Try Again")
-    page.should have_button("Finish")
     page.should have_content("unable to process")
   end
 end
