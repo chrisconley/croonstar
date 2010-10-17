@@ -54,6 +54,8 @@ GEM
     haml (3.0.21)
     hashie (0.4.0)
     highline (1.6.1)
+    hoptoad_notifier (2.3.8)
+      activesupport
     i18n (0.4.1)
     json_pure (1.4.6)
     mail (2.2.7)
@@ -130,6 +132,7 @@ DEPENDENCIES
   factory_girl
   haml
   highline
+  hoptoad_notifier
   mongoid (= 2.0.0.beta.17)
   net-ssh
   rails (= 3.0.1)

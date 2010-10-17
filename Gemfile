@@ -22,6 +22,8 @@ gem 'factory_girl'
 
 gem 'carrierwave'
 
+gem 'hoptoad_notifier'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
