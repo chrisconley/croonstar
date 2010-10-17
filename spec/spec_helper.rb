@@ -19,6 +19,8 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   config.before(:each) do
+    Croon.delete_all
+    Song.delete_all
     #Mongoid.master.collections.each { |c| c.remove }
   end
 
