@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title CroonStar
+    = stylesheet_link_tag "screen", "application"
+    /[if lt IE 8] <link rel="stylesheet" href="../blueprint/ie.css" type="text/css" media="screen, projection">
+    %style{:media => "screen", :type => "text/css"}
+      p, table, hr, .box { margin-bottom:25px; }
+      \.box p { margin-bottom:10px; }
+    = csrf_meta_tag
+  %body
+    .container
+      .header.prepend-6.span-12.append-6.last
+        = image_tag "logo.png", :size => "100x100", :style => "margin-bottom:-30px;"
+        %h1.title CroonStar
+      = yield
