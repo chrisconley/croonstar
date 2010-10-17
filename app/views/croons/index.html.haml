@@ -16,28 +16,13 @@
       = f.submit 'Get Your Croon On'
 
 %h2.list Most Popular
-- @croons.each do |croon| 
-  .play.prepend-7.span-1
-    = link_to :listen, :action => :listen, :id => 1
-  .details.span-4
-    = croon.song.try(:title)
-    %br
-    = croon.song.try(:artist)
-  .sung_by.span-2
-  .votes.span-3.append-7.last
-    = croon.vote_count
-    
-    / %table#croons
-    /     %thead
-    /         %tr
-    /             %th Play
-    /             %th Song Title
-    /             %th Star
-    /             %th Votes
-    /     %tbody
-    /         - @croons.each do |croon|
-    /             %tr
-    /                 %td= link_to :listen, :action => :listen, :id => 1
-    /                 %td= croon.song.try(:title)
-    /                 %td= croon.crooner
-    /                 %td= croon.vote_count
+.prepend-6.span-12.append-6
+  %table#croons
+    %tbody
+      - @croons.each do |croon|
+        %tr
+          %td 
+            %a{:href => "http://croonstar-songs.s3.amazonaws.com/mjbilliejean.mp3", :class =>"sm2_button"}mp3
+          %td= croon.song.title
+          %td Me
+          %td= croon.vote_count
