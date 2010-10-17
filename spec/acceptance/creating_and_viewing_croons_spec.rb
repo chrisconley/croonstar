@@ -25,7 +25,7 @@ feature "Creating And Viewing Croons", %q{
     page.should have_content("Croon")
   end
 
-  scenario "Viewing a croon" do
+  scenario "Viewing a croon with initialized status" do
     croon = Factory.create(:croon)
     AwesomeHTTP.stub!(:get)
     visit "/croons/#{croon.id}"
@@ -34,5 +34,102 @@ feature "Creating And Viewing Croons", %q{
     page.should have_content("should receive a phone call")
     page.should have_content("Follow the prompt")
     page.should have_content("haven't received a call within a minute")
+  end
+
+  scenario "Viewing a croon with calling status" do
+    croon = Factory.create(:croon, :status => "calling")
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("should receive a phone call")
+    page.should have_content("Follow the prompt")
+    page.should have_content("haven't received a call within a minute")
+  end
+
+  scenario "Viewing a croon with recording status" do
+    croon = Factory.create(:croon, :status => "recording")
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("Don't hang up")
+  end
+
+  scenario "Viewing a croon with processing status" do
+    croon = Factory.create(:croon, :status => "processing")
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("Congratulations!")
+  end
+
+  scenario "Viewing a croon with complete status" do
+    croon = Factory.create(:croon, :status => "complete")
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("play")
+  end
+
+  scenario "Viewing a croon with initialized status that has been hungup" do
+    croon = Factory.create(:croon, :status => "initialized", :hangup => true)
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("Oh No!")
+    page.should have_content("unexpected")
+  end
+
+  scenario "Viewing a croon with calling status that has been hungup" do
+    croon = Factory.create(:croon, :status => "calling", :hangup => true)
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("Oh No!")
+    page.should have_content("disconnected before")
+  end
+
+  scenario "Viewing a croon with recording status that has been hungup" do
+    croon = Factory.create(:croon, :status => "recording", :hangup => true)
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("Oh No!")
+    page.should have_content("disconnected before")
+    page.should have_content("entire song")
+    page.should have_content("good connection")
+  end
+
+  scenario "Viewing a croon with processing status that has been hungup" do
+    croon = Factory.create(:croon, :status => "processing", :hangup => true)
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("Congratulations")
+  end
+
+  scenario "Viewing a croon with complete status that has been hungup and has a recording" do
+    croon = Factory.create(:croon, :status => "complete", :hangup => true, :recording_filename => "not_nil")
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("play your song")
+  end
+
+  scenario "Viewing a croon with complete status that has been hungup and has no recording" do
+    croon = Factory.create(:croon, :status => "complete", :hangup => true)
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_button("Try Again")
+    page.should have_content("unable to process")
   end
 end

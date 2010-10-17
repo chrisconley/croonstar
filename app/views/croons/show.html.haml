@@ -1,4 +1,4 @@
 %div
-    = display_status(@croon.hangup, @croon.status)
+    = display_status(@croon)
     = button_to "Try Again", croons_url, :method => :get
     %pre= @croon.song.lyrics

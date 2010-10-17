@@ -8,10 +8,10 @@ module CroonsHelper
     options
   end
 
-  def display_status(hangup, status)
-    if hangup
+  def display_status(croon)
+    if croon.hangup
       exclamation = "Oh No!  "
-      case status
+      case croon.status
         when "initialized" then
           exclamation + "Something unexpected happened!  Try again."
         when "calling" then
@@ -19,10 +19,16 @@ module CroonsHelper
         when "recording" then
           exclamation + "The call was disconnected before the song finished!  You have to sing the entire song.  Be sure you have a good connection and wait for us to disconnect before you hangup."
         when "processing" then
-          exclamation + "We were unable to process your file!  Please try again."
+          "Congratulations!  You have submitted a song.  The song should be available shortly"
+        when "complete" then
+          if croon.recording_filename
+            "Click below to play your song!"
+          else
+            exclamation + "We were unable to process your file!  Please try again."
+          end
       end
     else
-      case status
+      case croon.status
         when "initialized" then
           "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing.  If you haven't received a call within a minute, please try again."
         when "calling" then
