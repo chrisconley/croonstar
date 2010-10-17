@@ -23,6 +23,7 @@ end
 require 'will_paginate'
 
 TROPO_APP_TOKEN = "b271522390e9344386bab43e7c786b81ccff6ce46213d49c6efb629f74b1af5b80db554cecaeaf0b4d218e2a"
+DOMAIN = "http://web1.tunnlr.com:9901"
 
 module CroonStar
   class Application < Rails::Application

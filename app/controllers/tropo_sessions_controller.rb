@@ -24,7 +24,7 @@ class TropoSessionsController < ApplicationController
     tropo = Tropo::Generator.new
     tropo.on :event => "hangup", :next => "/tropo_sessions/hangup.json?croon_id=#{@croon.id}" # processing.json if tropo fixes bug
     tropo.on :event => "continue", :next => "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
-    tropo.start_recording :url => "http://web1.tunnlr.com:9901/tropo_recordings.json?croon_id=#{@croon.id}", :format => "audio/wav"
+    tropo.start_recording :url => "#{DOMAIN}/tropo_recordings.json?croon_id=#{@croon.id}", :format => "audio/wav"
     tropo.ask({
       :name    => 'done',
       :attempts => 1,

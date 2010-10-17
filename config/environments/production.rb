@@ -1,4 +1,5 @@
 TROPO_APP_TOKEN = "4f7f4523d2c3c947addfa470e238efbac6a60a3e6ceaccbc68f1380cd075b8c86867f287f12b35736683ba8f"
+DOMAIN = "http://croonstar.r10.railsrumble.com"
 CroonStar::Application.configure do
 
   CarrierWave.configure do |config|
