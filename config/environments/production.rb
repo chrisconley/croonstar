@@ -1,4 +1,14 @@
 CroonStar::Application.configure do
+
+  CarrierWave.configure do |config|
+    config.storage              = 's3'
+
+    config.s3_access_key_id     = ENV['WINDOWS_AWS_KEY']
+    config.s3_secret_access_key = ENV['WINDOWS_AWS_SECRET']
+    config.s3_bucket            = 'croon_star'
+  end
+
+
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.
