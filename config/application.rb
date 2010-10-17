@@ -20,6 +20,7 @@ if ENV['MONGO_URL']
   # ENV['MONGOID_PASSWORD'] = mongo_uri.password
   ENV['MONGOID_DATABASE'] = mongo_uri.path.gsub('/', '')
 end
+require 'will_paginate'
 
 TROPO_APP_TOKEN = "b271522390e9344386bab43e7c786b81ccff6ce46213d49c6efb629f74b1af5b80db554cecaeaf0b4d218e2a"
 
