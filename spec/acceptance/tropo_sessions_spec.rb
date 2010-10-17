@@ -8,7 +8,7 @@ feature "Tropo Sessions", %q{
 
   background do
     Croon.delete_all
-    @croon = Factory(:croon, :phone_number => '12345', :song_url => "/test.mp3")
+    @croon = Factory(:croon, :phone_number => '1234567890', :song_url => "/test.mp3")
   end
 
   scenario "TropoSessions#create.json" do
