@@ -1,4 +1,6 @@
 class TropoRecordingsController < ApplicationController
+  protect_from_forgery :except => [:create]
+
   def create
     @croon = Croon.criteria.id(params[:croon_id]).first
     @croon.recording = params[:filename]
