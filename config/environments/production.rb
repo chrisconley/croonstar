@@ -6,7 +6,7 @@ CroonStar::Application.configure do
 
     config.s3_access_key_id     = "AKIAJJB2WGYSKAOLCXOQ"
     config.s3_secret_access_key = "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"
-    config.s3_bucket            = 'croon_star'
+    config.s3_bucket            = 'croon-star'
   end
 
 
