@@ -1,0 +1,80 @@
+<link rel="stylesheet" type="text/css" href="soundmanager/mp3-player-button.css" />
+<script type="text/javascript" src="/soundmanager/soundmanager2.js"></script>
+<script type="text/javascript" src="soundmanager/mp3-player-button.js"></script>
+
+<script type="text/javascript">
+
+soundManager.url = '/soundmanager/swf'; // directory where SM2 .SWFs live
+soundManager.debugMode = false;
+
+</script>
+
+<!-- required -->
+<!-- <link rel="stylesheet" type="text/css" href="/soundmanager/360player.css" /> -->
+
+<!-- special IE-only canvas fix -->
+<!--[if IE]><script type="text/javascript" src="soundmanager/excanvas.js"></script><![endif]-->
+
+<!-- Apache-licensed animation library -->
+<!-- <script type="text/javascript" src="soundmanager/berniecode-animator.js"></script> -->
+
+<!-- the core stuff -->
+<!-- <script type="text/javascript" src="/soundmanager/soundmanager2.js"></script> -->
+<!-- <script type="text/javascript" src="/soundmanager/360player.js"></script> -->
+
+<!-- configure it for your use -->
+<!-- <script type="text/javascript">
+
+soundManager.url = '/soundmanager/swf'; // directory where SM2 .SWFs live
+
+// Note that SoundManager will determine and append the appropriate .SWF file to the URL,
+// eg. /path/to/sm2-flash-movies/soundmanager2.swf automatically.
+
+// Beta-ish HTML5 audio support (force-enabled for iPad), flash-free sound for Safari + Chrome. Enable if you want to try it!
+// soundManager.useHTML5Audio = true;
+
+// do this to skip flash block handling for now. See the flashblock demo when you want to start getting fancy.
+soundManager.useFlashBlock = false;
+
+// disable debug mode after development/testing..
+// soundManager.debugMode = false;
+
+// Option 1: Simple onload() + createSound() method
+
+// soundManager.onload = function() {
+//   // SM2 has loaded - now you can create and play sounds!
+//   soundManager.createSound('helloWorld','/path/to/hello-world.mp3');
+//   soundManager.play('helloWorld');
+// };
+//
+// // Option 2 (better): More flexible onload() + createSound() method
+//
+// soundManager.onload = function() {
+//   var mySound = soundManager.createSound({
+//     id: 'aSound',
+//     url: '/path/to/an.mp3'
+//     // onload: [ event handler function object ],
+//     // other options here..
+//   });
+//   mySound.play();
+// }
+//
+// // Option 3 (best): onready() + createSound() methods, handle load/failure together:
+//
+// soundManager.onready(function() {
+//   // check if SM2 successfully loaded..
+//   if (soundManager.supported()) {
+//     // SM2 has loaded - now you can create and play sounds!
+//     var mySound = soundManager.createSound({
+//       id: 'aSound',
+//       url: '/path/to/an.mp3'
+//       // onload: [ event handler function object ],
+//       // other options here..
+//     });
+//     mySound.play();
+//   } else {
+//     // (Optional) Hrmm, SM2 could not start. Show an error, etc.?
+//   }
+// });
+
+</script> -->
