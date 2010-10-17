@@ -21,6 +21,8 @@ if ENV['MONGO_URL']
   ENV['MONGOID_DATABASE'] = mongo_uri.path.gsub('/', '')
 end
 
+TROPO_APP_TOKEN = "b271522390e9344386bab43e7c786b81ccff6ce46213d49c6efb629f74b1af5b80db554cecaeaf0b4d218e2a"
+
 module CroonStar
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
