@@ -8,7 +8,7 @@ feature "Tropo Sessions", %q{
 
   background do
     Croon.delete_all
-    @croon = Factory(:croon, :phone_number => '1234567890', :song_url => "/test.mp3")
+    @croon = Factory(:croon, :phone_number => '1234567890')
   end
 
   scenario "TropoSessions#create.json" do
@@ -30,7 +30,7 @@ feature "Tropo Sessions", %q{
 
     @croon.reload
     @croon[:status].should == 'recording'
-    page.should have_content(@croon.song_url)
+    page.should have_content(@croon.song.url)
     page.should have_content("/tropo_recordings.json?croon_id=#{@croon.id}")
     page.should have_content("/tropo_sessions/processing.json?croon_id=#{@croon.id}")
   end

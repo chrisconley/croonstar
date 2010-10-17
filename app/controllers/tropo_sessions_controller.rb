@@ -25,7 +25,7 @@ class TropoSessionsController < ApplicationController
     tropo.on :event => "hangup", :next => "/tropo_sessions/hangup.json?croon_id=#{@croon.id}" # processing.json if tropo fixes bug
     tropo.on :event => "continue", :next => "/tropo_sessions/processing.json?croon_id=#{@croon.id}"
     tropo.start_recording :url => "http://web1.tunnlr.com:9901/tropo_recordings.json?croon_id=#{@croon.id}", :format => "mp3"
-    tropo.say @croon.song_url
+    tropo.say @croon.song.url
 
     render :json => tropo.response
   end
