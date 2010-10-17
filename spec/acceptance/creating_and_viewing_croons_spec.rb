@@ -14,13 +14,13 @@ feature "Creating And Viewing Croons", %q{
     AwesomeHTTP.stub!(:get)
     visit "/"
 
-    page.should have_content("Votes")
+    page.should have_content("Most Popular")
     # save_and_open_page
 
-    fill_in "Phone number", :with => "1234567890"
-    select "My Sharona", :from => "Pick a Song!"
+    select "My Sharona", :from => "1. Select a Song"
+    fill_in "2. Tell us where to call you", :with => "1234567890"
 
-    click_button "Croon!"
+    click_button "Get Your Croon On"
 
     page.should have_content("Croon")
   end

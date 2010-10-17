@@ -1,25 +1,43 @@
-%div#page
-    = form_for @croon do |f|
-        %p
-            = f.label :phone_number
-            = f.phone_field :phone_number
-            = error_messages(f.object.errors[:phone_number])
-        %p
-            = fields_for "croon[song_attributes]", @croon.song do |song_form|
-                = song_form.label :id, "Pick a Song!"
-                = song_form.select :id, song_select_options(@songs)
-        = f.submit 'Croon!'
-    %table#croons
-        %thead
-            %tr
-                %th Play
-                %th Song Title
-                %th Star
-                %th Votes
-        %tbody
-            - @croons.each do |croon|
-                %tr
-                    %td= link_to :listen, :action => :listen, :id => 1
-                    %td= croon.song.try(:title)
-                    %td= croon.crooner
-                    %td= croon.vote_count
+.instructions.span-24
+  = form_for @croon do |f|
+    .span-6.prepend-1.colborder
+      = fields_for "croon[song_attributes]", @croon.song do |song_form|
+        = song_form.label :id, "1. Select a Song"
+        %br
+        = song_form.select :id, song_select_options(@songs)
+    .span-8.colborder
+      = f.label :phone_number, "2. Tell us where to call you"
+      %br
+      = f.phone_field :phone_number, :size => 10
+      =# error_messages(f.object.errors[:phone_number])
+    .span-6.append-1.last
+      %span 3. Croon!
+      %br
+      = f.submit 'Get Your Croon On'
+
+%h2.list Most Popular
+- @croons.each do |croon| 
+  .play.prepend-7.span-1
+    = link_to :listen, :action => :listen, :id => 1
+  .details.span-4
+    = croon.song.try(:title)
+    %br
+    = croon.song.try(:artist)
+  .sung_by.span-2
+  .votes.span-3.append-7.last
+    = croon.vote_count
+    
+    / %table#croons
+    /     %thead
+    /         %tr
+    /             %th Play
+    /             %th Song Title
+    /             %th Star
+    /             %th Votes
+    /     %tbody
+    /         - @croons.each do |croon|
+    /             %tr
+    /                 %td= link_to :listen, :action => :listen, :id => 1
+    /                 %td= croon.song.try(:title)
+    /                 %td= croon.crooner
+    /                 %td= croon.vote_count
