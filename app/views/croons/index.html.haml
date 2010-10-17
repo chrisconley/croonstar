@@ -20,9 +20,4 @@
   %table#croons
     %tbody
       - @croons.each do |croon|
-        %tr
-          %td 
-            %a{:href => "http://croonstar-songs.s3.amazonaws.com/mjbilliejean.mp3", :class =>"sm2_button"}mp3
-          %td= croon.song.title
-          %td Me
-          %td= croon.vote_count
+        = render :partial => "player", :locals => {:croon => croon}
