@@ -1,6 +1,6 @@
 class CroonsController < ApplicationController
   def index
-    @songs_for_select = Song.select_options
+    @songs = Song.all
     @croons = Croon.all
     @croon = Croon.new
   end
