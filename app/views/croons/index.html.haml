@@ -5,8 +5,9 @@
             = f.phone_field :phone_number
             = error_messages(f.object.errors[:phone_number])
         %p
-            = f.label :song_url, "Pick a Song!"
-            = f.select :song_url, song_select_options(@songs)
+            = fields_for "croon[song_attributes]", @croon.song do |song_form|
+                = song_form.label :id, "Pick a Song!"
+                = song_form.select :id, song_select_options(@songs)
         = f.submit 'Croon!'
     %table#croons
         %thead
