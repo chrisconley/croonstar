@@ -1,7 +1,7 @@
 class CroonsController < ApplicationController
   def index
     @songs = Song.all
-    @croons = Croon.all.order_by(:time_stamps.desc)
+    @croons = Croon.where(:recording_filename.exists => true).order_by(:time_stamps.desc)
     @croon = Croon.new
   end
 
