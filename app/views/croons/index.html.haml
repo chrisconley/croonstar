@@ -4,16 +4,21 @@
             = c.label :phone_number
             = c.phone_field :phone_number
             = error_messages(c.object.errors[:phone_number])
-        %p= select("croon", "song_url", @songs_for_select)
+        %p
+            = label_tag "Pick a Song!"
+            = select("croon", "song_url", @songs_for_select)
         = c.submit 'Croon!'
     %table#croons
         %thead
-            %th Play
-            %th Song Title
-            %th Star
-            %th Votes
+            %tr
+                %th Play
+                %th Song Title
+                %th Star
+                %th Votes
         %tbody
-            %td= link_to :listen, :action => :listen, :id => 1
-            %td My Title
-            %td Chris Conley
-            %td 22
+            - @croons.each do |croon|
+                %tr
+                    %td= link_to :listen, :action => :listen, :id => 1
+                    %td= croon.song.title
+                    %td= croon.crooner
+                    %td= croon.vote_count
