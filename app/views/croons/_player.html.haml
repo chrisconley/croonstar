@@ -1,6 +1,6 @@
 %tr
   %td 
-    %a{:href => "http://croonstar-songs.s3.amazonaws.com/mjbilliejean.mp3", :class =>"sm2_button"}
+    %a{:href => (croon.recording.url || "http://croonstar-songs.s3.amazonaws.com/mjbilliejean.mp3"), :class =>"sm2_button"}
   %td= croon.song.title
   %td Me
   %td= croon.vote_count
