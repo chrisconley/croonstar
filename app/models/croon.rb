@@ -15,9 +15,7 @@ class Croon
   referenced_in :song
 
   def truncate_and_immute_crooner()
-    puts "was " + self.crooner_was
-    puts "new " + self.crooner
-    if self.crooner_was.present?
+    if self.crooner_was
       self.crooner = self.crooner_was
     else
       self.crooner = self.crooner.try(:first, 25)

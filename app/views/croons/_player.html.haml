@@ -3,4 +3,4 @@
     %a{:href => (croon.recording.url || "http://croonstar-songs.s3.amazonaws.com/mjbilliejean.mp3"), :class =>"sm2_button"}
   %td= croon.song.title
   %td.small by
-  %td= croon.crooner || "Anonymous"
+  %td= croon.crooner.present? ? croon.crooner : "Anonymous"

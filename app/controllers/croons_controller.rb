@@ -2,7 +2,7 @@ class CroonsController < ApplicationController
   def index
     @songs = Song.all
     page = params[:page] || 1
-    @croons = Croon.where(:recording_filename.exists => true).order_by(:time_stamps.desc).paginate(:page => page, :per_page => 15)
+    @croons = Croon.where(:recording_filename.exists => true).order_by(:time_stamps.desc).paginate(:page => page, :per_page => 10)
     @croon = Croon.new
   end
 
