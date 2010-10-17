@@ -24,9 +24,9 @@ module CroonsHelper
     else
       case status
         when "initialized" then
-          "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing"
+          "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing.  If you haven't received a call within a minute, please try again."
         when "calling" then
-          "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing"
+          "You should receive a phone call shortly if you haven't already!  Follow the prompt and press '1' when you are ready to sing.  If you haven't received a call within a minute, please try again."
         when "recording" then
           "You have great pipes!  Don't hang up until until we do!"
         when "processing" then

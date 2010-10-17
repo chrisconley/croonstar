@@ -24,4 +24,14 @@ feature "Creating And Viewing Croons", %q{
 
     page.should have_content("Croon")
   end
+
+  scenario "Viewing a croon" do
+    croon = Factory.create(:croon)
+    AwesomeHTTP.stub!(:get)
+    visit "/croons/#{croon.id}"
+
+    page.should have_content("should receive a phone call")
+    page.should have_content("Follow the prompt")
+    page.should have_content("haven't received a call within a minute")
+  end
 end
