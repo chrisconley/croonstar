@@ -20,6 +20,7 @@ if ENV['MONGO_URL']
   # ENV['MONGOID_PASSWORD'] = mongo_uri.password
   ENV['MONGOID_DATABASE'] = mongo_uri.path.gsub('/', '')
 end
+require 'will_paginate'
 
 module CroonStar
   class Application < Rails::Application

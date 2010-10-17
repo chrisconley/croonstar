@@ -21,3 +21,4 @@
     %tbody
       - @croons.each do |croon|
         = render :partial => "player", :locals => {:croon => croon}
+  = will_paginate @croons
