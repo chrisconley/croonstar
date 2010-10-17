@@ -8,7 +8,7 @@ class CroonsController < ApplicationController
   def create
     @croon = Croon.new(params[:croon])
     if @croon.save
-      AwesomeHTTP.get("http://api.tropo.com/1.0/sessions?action=create&token=b271522390e9344386bab43e7c786b81ccff6ce46213d49c6efb629f74b1af5b80db554cecaeaf0b4d218e2a", :croon_id => @croon.id)
+      AwesomeHTTP.get("http://api.tropo.com/1.0/sessions?action=create&token=#{TROPO_APP_TOKEN}", :croon_id => @croon.id)
       redirect_to croon_url(@croon)
     else
       @songs = Song.all
