@@ -12,7 +12,7 @@ class TropoSessionsController < ApplicationController
       :bargein => true,
       :timeout => 30,
       :require => 'true' }) do
-        say     :value => 'Hello! Press 1 when your are ready to start crooning.'
+        say     :value => 'Hello! Press 1 when your are ready to start singing. When you are finished, be sure to press 9 before haning up or your recording will not be saved.'
         choices :terminator => '1', :mode => "dtmf"
     end
 

@@ -21,12 +21,22 @@ class RecordingUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
+  #Process files as they are uploaded:
+  process :adjust_delay
+
+  def adjust_delay
+     #split into a file for each channel files
+     tmp_path = current_path.gsub(/\/[^\/]+$/, '')
+
+    `sox #{file.file} #{tmp_path}/left.wav remix 1`
+    `sox #{file.file} #{tmp_path}/right.wav remix 2`
+
+    # trim one of them
+    `sox #{tmp_path}/left.wav #{tmp_path}/left-trimmed.wav trim 0:00.6`
+
+    # merge the two channels
+    `sox -m #{tmp_path}/right.wav #{tmp_path}/left-trimmed.wav #{file.file}`
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do
@@ -41,7 +51,7 @@ class RecordingUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # def filename
-  #   "something.jpg" if original_filename
+  #   "merged.mp3" if original_filename
   # end
 
 end
