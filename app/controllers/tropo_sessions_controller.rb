@@ -12,7 +12,7 @@ class TropoSessionsController < ApplicationController
       :bargein => true,
       :timeout => 30,
       :require => 'true' }) do
-        say     :value => "http://croon-star.s3.amazonaws.com/welcome.mp3"
+        say     :value => 'Hello! Press 1 when your are ready to start singing. When you are finished, be sure to press 9 before haning up or your recording will not be saved.'
         choices :terminator => '1', :mode => "dtmf"
     end
 
@@ -44,7 +44,7 @@ class TropoSessionsController < ApplicationController
   def processing
     @croon.update_attributes(:status => "processing")
     tropo = Tropo::Generator.new
-    tropo.say "http://croon-star.s3.amazonaws.com/thankyou.mp3"
+    tropo.say "Thanks for submitting your croon!"
     render :json => tropo.response
   end
 
